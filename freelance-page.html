@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hire Me — Freelance Programming</title>
+    <meta name="description" content="Freelance programming for education sites, portfolios, landing pages, and more. Cosmic-quality UX, fast, and clean.">
+    <meta name="color-scheme" content="dark light">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Hire Me — Freelance Programming">
+    <meta property="og:description" content="Education sites, portfolios, landing pages, and more — fast, clean, cosmic.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://example.com/hire">
+    <meta property="og:image" content="https://example.com/og-image.png">
+
+    <style>
+        /* =========================
+           Cosmic Theme Tokens
+           ========================= */
+        :root {
+            --bg: #0b0f16;
+            --card: #121826;
+            --text: #e8eef7;
+            --muted: #9fb0c9;
+            --accent: #6bc2ff;
+            --accent2: #ffc86b;
+            --ok: #8cff6b;
+            --danger: #ff6b8a;
+            --border: #1f2a3a;
+            --radius: 14px;
+            --shadow: 0 10px 30px rgba(0,0,0,.35);
+            --maxw: 1100px;
+        }
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg: #f7f9fc;
+                --card: #ffffff;
+                --text: #0d1320;
+                --muted: #52627a;
+                --border: #e6edf5;
+            }
+        }
+
+        * { box-sizing: border-box; }
+        html, body { min-height: 100%; }
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, Segoe UI, Inter, Roboto, Apple Color Emoji, Noto Color Emoji, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(1200px 800px at -10% -10%, #162038 0%, transparent 55%),
+                radial-gradient(900px 700px at 125% 10%, #0e1423 0%, transparent 60%),
+                radial-gradient(1200px 900px at 50% 120%, #0b1222 0%, transparent 65%),
+                var(--bg);
+            background-repeat: no-repeat, no-repeat, no-repeat;
+            background-attachment: fixed, fixed, fixed;
+            min-height: 100dvh;
+        }
+        .stars, .stars::after {
+            content: "";
+            position: fixed; inset: 0; pointer-events: none;
+            background-image:
+                radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,.6) 40%, transparent 41%),
+                radial-gradient(1.5px 1.5px at 70% 50%, rgba(255,255,255,.5) 40%, transparent 41%),
+                radial-gradient(1.8px 1.8px at 40% 80%, rgba(255,255,255,.45) 40%, transparent 41%),
+                radial-gradient(1.2px 1.2px at 85% 20%, rgba(255,255,255,.4) 40%, transparent 41%);
+        }
+        .stars::after {
+            animation: twinkle 6s linear infinite alternate;
+            opacity: .75;
+        }
+        @keyframes twinkle { from { opacity: 1 } to { opacity: .9 } }
+
+        .container { max-width: var(--maxw); margin: 0 auto; padding: 24px; }
+        header.nav {
+            position: sticky; top: 0; z-index: 10;
+            backdrop-filter: blur(10px);
+            background: color-mix(in srgb, var(--bg) 75%, transparent);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; max-width: var(--maxw); margin: 0 auto; }
+        .brand { display: flex; gap: 10px; align-items: center; font-weight: 700; letter-spacing: .2px; }
+        .badge { font-size: 12px; padding: 4px 8px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); }
+        .nav-actions a { color: var(--text); text-decoration: none; opacity: .9; }
+        .nav-actions a:hover { opacity: 1; }
+
+        .hero {
+            display: grid; gap: 18px; padding: 56px 24px 24px;
+            text-align: center;
+        }
+        .hero h1 { font-size: clamp(28px, 6vw, 48px); margin: 0; line-height: 1.05; }
+        .hero p { margin: 0 auto; max-width: 800px; color: var(--muted); font-size: clamp(16px, 2.2vw, 18px); }
+        .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+        .btn {
+            --pad: 12px 18px;
+            background: transparent; color: var(--text); border: 1px solid var(--border);
+            padding: var(--pad); border-radius: 12px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+            font-weight: 600;
+        }
+        .btn:hover { transform: translateY(-1px); border-color: color-mix(in srgb, var(--accent) 55%, var(--border)); }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 70%, #fff 10%));
+            color: #05121e; border: none;
+            box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 35%, #000 65%);
+        }
+        .btn-ghost { background: transparent; }
+        .section { padding: 24px; }
+        .section h2 { margin: 8px 0 10px; font-size: clamp(22px, 3.4vw, 28px); }
+        .muted { color: var(--muted); }
+
+        .grid { display: grid; gap: 16px; }
+        @media (min-width: 780px) { .grid-3 { grid-template-columns: repeat(3,1fr); } .grid-2 { grid-template-columns: repeat(2,1fr); } }
+
+        .card {
+            background: color-mix(in srgb, var(--card) 85%, transparent);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 18px;
+        }
+        .list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+        .list li { display: flex; gap: 10px; align-items: flex-start; }
+        .list li span { font-size: 18px; line-height: 1.2; }
+
+        /* Pricing */
+        .price { font-size: 28px; font-weight: 800; margin: 6px 0; }
+        .price small { font-weight: 600; font-size: 14px; color: var(--muted); }
+        .price-card { position: relative; overflow: hidden; }
+        .price-card.popular { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
+        .ribbon {
+            position: absolute; top: 12px; right: -36px; background: var(--accent2); color: #1f1300;
+            padding: 6px 44px; transform: rotate(30deg); font-size: 12px; font-weight: 800; box-shadow: 0 8px 20px rgba(0,0,0,.25);
+        }
+
+        /* Sticky CTA bar */
+        .sticky-cta {
+            position: sticky; bottom: 0; z-index: 9;
+            background: color-mix(in srgb, var(--card) 92%, transparent);
+            border-top: 1px solid var(--border);
+            padding: 12px 18px;
+            display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap;
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            margin-top: 24px; padding: 24px;
+            color: var(--muted);
+        }
+
+        /* Reduce motion niceness */
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; }
+        }
+    </style>
+
+    <!-- Schema (fill later) -->
+    <script type="application/ld+json">
+        {
+            "@context":"https://schema.org",
+            "@type":"ProfessionalService",
+            "name":"Liam — Freelance Programmer",
+            "url":"https://example.com/hire",
+            "priceRange":"££",
+            "areaServed": {
+                "@type": "GeoCircle",
+                "geoMidpoint": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 0,
+                    "longitude": 0
+                },
+                "geoRadius": 20000
+            },
+            "description":"I build clean, responsive sites for education, portfolios, and ideas — fast and affordably.",
+            "founder": {
+                "@type": "Person",
+                "name": "Liam Dent"
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- <div class="stars" aria-hidden="true"></div> -->
+
+    <header class="nav" role="navigation" aria-label="Site">
+        <div class="nav-inner">
+            <div class="brand">
+                <span>🌌</span><span>Liam — Freelance Programming</span>
+                <span class="badge">Available</span>
+            </div>
+            <div class="nav-actions">
+                <a href="#pricing">Pricing</a> · <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero container" aria-labelledby="hero-title">
+            <h1 id="hero-title">Let's Build Something Stellar 🌠</h1>
+            <p><em>I turn your ambitious ideas into clean, responsive websites — the kind people actually enjoy using. Education platforms, portfolios, dashboards, you name it.</em></p>
+            <div class="cta-row">
+                <a class="btn btn-primary" href="#contact">🛎️ Contact Me</a>
+                <a class="btn btn-ghost" href="#pricing">💸 See Pricing</a>
+            </div>
+            <small style="display:block; margin-top:8px; color:var(--muted);">
+                Based in the UK. Working with clients worldwide.
+            </small>
+        </section>
+
+        <!-- WHO I AM -->
+        <section class="section container" aria-labelledby="who">
+            <h2 id="who">✨ Who I am</h2>
+            <div class="grid grid-2">
+                <div class="card">
+                    <p><strong>Hi! I'm Liam.</strong> A self-taught full-stack developer who actually loves CSS (yes, really). I live in my text editor, speak seven languages, and build projects faster than a C++ loop statement.</p>
+                    <ul class="list">
+                        <li><span class="i">🚀</span><span>Flask & Python, HTML/CSS/JS, Stripe, UX polish</span></li>
+                        <li><span class="i">🌍</span><span>Multilingual UX (EN/DE/ES/PT/FR/IT/RU)</span></li>
+                        <li><span class="i">🛡️</span><span>Security-minded builds (auth, hashing, secure-by-default architecture)</span></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <p><strong>The user always comes first.</strong> My focus is on smooth interfaces, smart structure, and quantum-level attention to detail — all of which enhance the user experience and make scaling your project easier too.</p>
+                    <ul class="list">
+                        <li><span class="i">⚡</span><span>Mobile-first, responsive, dark/light themes</span></li>
+                        <li><span class="i">🧩</span><span>Clean structure: templates, components, tokens</span></li>
+                        <li><span class="i">🧠</span><span>Accessible by default (labels, contrast, keyboard)</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHAT I OFFER -->
+        <section class="section container" aria-labelledby="offer">
+            <h2 id="offer">🛠️ What I offer</h2>
+            <div class="grid grid-3">
+                <div class="card">
+                    <h3>Education Sites 📚</h3>
+                    <p class="muted"><em>Courses, lesson systems, quizzes, progress tracking — designed for clarity, engagement, and easy admin management.</em></p>
+                </div>
+                <div class="card">
+                    <h3>Portfolio Pages 💼</h3>
+                    <p class="muted"><em>Let's showcase your work with clean layouts, smooth animations, and responsive designs that that even impress hiring managers glued to spreadsheets.</em></p>
+                </div>
+                <div class="card">
+                    <h3>Landing Pages 📜</h3>
+                    <p class="muted"><em>Fast, focused, and beautiful — built to impress.</em></p>
+                </div>
+                <div class="card">
+                    <h3>Dashboards 📊</h3>
+                    <p class="muted"><em>Clean data views, charts, real-time updates, and user-friendly controls — perfect for internal tools and admin dashboards!</em></p>
+                </div>
+                <div class="card">
+                    <h3>Mini SaaS / MVP 💻</h3>
+                    <p class="muted"><em>Got a product idea? We'll work together to turn it into a functional prototype you can actually test, show, and sell. 💸</em></p>
+                </div>
+                <div class="card">
+                    <h3>Custom Requests ✨</h3>
+                    <p class="muted"><em>If it's going to exist on the web and you can dream it, I can probably build it. Just don't ask me to rebuild Duolingo or Instagram in three days — I need sleep too. 😅</em></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING -->
+        <section class="section container" id="pricing" aria-labelledby="pricing-title">
+            <h2 id="pricing-title">💸 Pricing (placeholder)</h2>
+            <p class="muted"><em>🪐 Pick the package that fits your orbit — custom options available too.</em></p>
+            <div class="grid grid-3">
+                <div class="card price-card">
+                    <h3>Single Page</h3>
+                    <div class="price">From £120 <small>/page</small></div>
+                    <ul class="list">
+                        <li><span class="i">✅</span><span>Responsive design across devices</span></li>
+                        <li><span class="i">✅</span><span>Dark/light theme support</span></li>
+                        <li><span class="i">✅</span><span>Basic SEO & analytics</span></li>
+                    </ul>
+                    <small style="display:block; margin-top:8px; color:var(--muted);">
+                        Perfect for landing pages, personal sites, or single-feature demos.
+                    </small>
+                    <div style="margin-top:12px;">
+                        <a class="btn btn-primary" href="#contact">Start Now</a>
+                    </div>
+                </div>
+
+                <div class="card price-card popular">
+                    <div class="ribbon">Most Popular</div>
+                    <h3>Mini Site</h3>
+                    <div class="price">From £360 <small>/3–5 pages</small></div>
+                    <ul class="list">
+                        <li><span class="i">✨</span><span>Multiple pages, single flow</span></li>
+                        <li><span class="i">✨</span><span>Reusable components & templates </span></li>
+                        <li><span class="i">✨</span><span>Contact form integration</span></li>
+                    </ul>
+                    <small style="display:block; margin-top:8px; color:var(--muted);">
+                        Best for portfolios, small businesses, or project launches.
+                    </small>
+                    <div style="margin-top:12px;">
+                        <a class="btn btn-primary" href="#contact">I Want This</a>
+                    </div>
+                </div>
+
+                <div class="card price-card">
+                    <h3>Custom / MVP</h3>
+                    <div class="price">Let's chat <small>— scoped</small></div>
+                    <ul class="list">
+                        <li><span class="i">🌌</span><span>User auth, payments, and databases</span></li>
+                        <li><span class="i">🌌</span><span>Admin panels, roles, and dashboards</span></li>
+                        <li><span class="i">🌌</span><span>Performance, security, and scale prep</span></li>
+                    </ul>
+                    <small style="display:block; margin-top:8px; color:var(--muted);">
+                        Need something bigger? Let's prototype it properly. 💫
+                    </small>
+                    <div style="margin-top:12px;">
+                        <a class="btn btn-primary" href="#contact">Let's Build</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS (placeholder) -->
+        <section class="section container" aria-labelledby="testimonials">
+            <h2 id="testimonials">💬 Testimonials</h2>
+            <div class="card">
+                <p class="muted">Coming soon.</p>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section container" id="contact" aria-labelledby="cta">
+            <div class="card">
+                <h2 id="cta">Let's make your idea real 🛠️</h2>
+                <p class="muted">Tell me what you need in at least 2 sentences — the more context, the better! I'll reply with a simple plan and a fair price.</p>
+                <p class="muted">Form is currently inactive — for now, contact <a href="mailto:liamd0594@gmail.com">liamd0594@gmail.com</a> :)</p>
+
+                <!-- Simple contact options -->
+                <div class="grid grid-2" style="align-items:start;">
+                    <div>
+                        <a class="btn btn-primary" href="mailto:hello@example.com?subject=Project%20Inquiry%20—%20Site">
+                            💌 Email Me
+                        </a>
+                        <a class="btn btn-ghost" style="margin-left:8px;" href="#pricing">See Pricing</a>
+                    </div>
+                    <form class="card" style="padding:14px;" method="POST" action="https://formspree.io/f/id">
+                        <!-- Replace action with endpoint (e.g., Flask route or Formspree ID) -->
+                        <label for="name">Name</label>
+                        <input id="name" name="name" required placeholder="Your name" style="width:100%; margin:6px 0 10px; padding:10px; border-radius:10px; border:1px solid var(--border); background:transparent; color:var(--text);">
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email" required placeholder="you@example.com" style="width:100%; margin:6px 0 10px; padding:10px; border-radius:10px; border:1px solid var(--border); background:transparent; color:var(--text);">
+                        <label for="msg">Message</label>
+                        <textarea id="msg" name="message" rows="5" required placeholder="About your project..." style="width:100%; margin:6px 0 12px; padding:10px; border-radius:10px; border:1px solid var(--border); background:transparent; color:var(--text);"></textarea>
+                        <button class="btn btn-primary" type="submit" disabled>Send</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sticky CTA -->
+        <div class="sticky-cta" role="region" aria-label="Quick contact">
+            <strong>Got a project idea? 🚀</strong>
+            <a class="btn btn-primary" href="#contact">💌 Contact</a>
+            <a class="btn btn-ghost" href="#pricing">💸 Pricing</a>
+        </div>
+    </main>
+
+    <footer class="container" role="contentinfo">
+        <small>&copy; <span id="y"></span> Liam — Freelance Programming.</small>
+    </footer>
+
+    <script>
+        document.getElementById('y').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
